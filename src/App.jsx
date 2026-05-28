@@ -1,4 +1,5 @@
 import { useAuth } from "./context/AuthContext";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   const { user, loading } = useAuth();
@@ -9,13 +10,7 @@ function App() {
     return <h1>Loading...</h1>;
   }
 
-  return (
-    <div>
-      <h1>E-Commerce App</h1>
-
-      {user ? <p>{user.email}</p> : <p>No User</p>}
-    </div>
-  );
+  return <AppRoutes />;
 }
 
 export default App;
