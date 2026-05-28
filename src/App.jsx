@@ -1,9 +1,21 @@
-import { auth } from "./firebase/firebaseConfig";
+import { useAuth } from "./context/AuthContext";
 
 function App() {
-  console.log(auth);
+  const { user, loading } = useAuth();
 
-  return <h1>Firebase Connected</h1>;
+  console.log(user);
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
+  return (
+    <div>
+      <h1>E-Commerce App</h1>
+
+      {user ? <p>{user.email}</p> : <p>No User</p>}
+    </div>
+  );
 }
 
 export default App;
