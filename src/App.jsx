@@ -1,5 +1,7 @@
 import { useAuth } from "./context/AuthContext";
 import AppRoutes from "./routes/AppRoutes";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const { user, loading } = useAuth();
@@ -10,7 +12,12 @@ function App() {
     return <h1>Loading...</h1>;
   }
 
-  return <AppRoutes />;
+  return (
+    <>
+      <AppRoutes />
+      <ToastContainer />
+    </>
+  );
 }
 
 export default App;
