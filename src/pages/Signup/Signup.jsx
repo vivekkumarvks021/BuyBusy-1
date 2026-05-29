@@ -3,11 +3,9 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { signup } from "../../services/authService";
 import AuthForm from "../../components/AuthForm/AuthForm";
-import { useAuth } from "../../context/AuthContext";
 
 function Signup() {
   const navigate = useNavigate();
-  const { user, loading } = useAuth();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,14 +33,6 @@ function Signup() {
       toast.error(error.message);
     }
   };
-
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
-
-  if (user) {
-    return <Navigate to="/" />;
-  }
 
   return (
     <AuthForm
