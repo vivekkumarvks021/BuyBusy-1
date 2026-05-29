@@ -13,12 +13,12 @@ function Navbar() {
 
   const [cartItems, setCartItems] = useState([]);
   const fetchCartItems = async () => {
-    const items = await getCartItems(user.uid);
+    const items = await getCartItems(user?.uid);
     setCartItems(items);
   };
 
   useEffect(() => {
-    fetchCartItems();
+    if (user) fetchCartItems();
   }, []);
 
   const handleLogout = async () => {
