@@ -1,4 +1,11 @@
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  orderBy,
+  query,
+  serverTimestamp,
+} from "firebase/firestore";
 
 import { db } from "../firebase/firebaseConfig";
 
@@ -16,4 +23,20 @@ export const placeOrder = async (userId, cartItems, totalPrice) => {
   });
 
   await clearCart(userId);
+};
+
+export const getOrders = async (userId) => {
+  const ordersRef = collection(db, "orders", userId, "items");
+
+  const q = query(ordersRef, orderBy("createdAt", "desc"));
+
+  const querySnapshot = await getDocs(q);
+
+  const orders = querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+
+    ...doc.data(),
+  }));
+
+  return orders;
 };
