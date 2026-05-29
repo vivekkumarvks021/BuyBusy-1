@@ -1,3 +1,4 @@
+import Navbar from "./components/Navbar/Navbar";
 import { useAuth } from "./context/AuthContext";
 import AppRoutes from "./routes/AppRoutes";
 import { ToastContainer } from "react-toastify";
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <>
+      <Navbar />
       <AppRoutes />
       <ToastContainer />
     </>
