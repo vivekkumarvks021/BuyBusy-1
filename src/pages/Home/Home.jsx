@@ -6,7 +6,7 @@ import styles from "./Home.module.css";
 
 function Home() {
   const [products, setProducts] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [maxPrice, setMaxPrice] = useState(100000);
   const [loading, setLoading] = useState(true);
 
@@ -32,18 +32,22 @@ function Home() {
 
   const filteredProducts = products.filter((product) => {
     const categoryMatch =
-      selectedCategory === "All" || product.category === selectedCategory;
+      selectedCategories.length === 0 ||
+      selectedCategories.includes(product.category);
 
     const priceMatch = product.price <= maxPrice;
 
     return categoryMatch && priceMatch;
   });
 
+  const categories = [...new Set(products.map((product) => product.category))];
+
   return (
     <div className={styles.container}>
       <Filters
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
+        categories={categories}
+        selectedCategories={selectedCategories}
+        setSelectedCategories={setSelectedCategories}
         maxPrice={maxPrice}
         setMaxPrice={setMaxPrice}
       />

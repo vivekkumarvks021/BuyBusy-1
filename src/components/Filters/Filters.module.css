@@ -1,32 +1,79 @@
 .filters {
-  width: 250px;
+  width: 260px;
 
   background-color: white;
 
   padding: 1.5rem;
 
-  border-radius: 10px;
+  border-radius: 12px;
 
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2rem;
 
   height: fit-content;
 }
 
-.filters h2 {
-  margin-bottom: 1.5rem;
+.heading {
+  font-size: 1.4rem;
+
+  font-weight: 600;
 }
 
-.filterGroup {
+.section {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 1rem;
+}
+
+.sectionTitle {
+  font-size: 1rem;
+
+  font-weight: 600;
+}
+
+.categories {
   display: flex;
 
   flex-direction: column;
 
   gap: 0.8rem;
-
-  margin-bottom: 1.5rem;
 }
 
-.filterGroup select,
-.filterGroup input {
-  padding: 0.6rem;
+.categoryItem {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.7rem;
+
+  cursor: pointer;
+
+  font-size: 0.95rem;
+}
+
+.categoryItem input {
+  width: 16px;
+
+  height: 16px;
+
+  cursor: pointer;
+}
+
+.priceValue {
+  font-size: 0.95rem;
+
+  font-weight: 500;
+}
+
+.rangeInput {
+  width: 100%;
+
+  cursor: pointer;
 }
