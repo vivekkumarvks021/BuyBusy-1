@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { toast } from "react-toastify";
 
 import { signup } from "../../services/authService";
 
-import styles from "./Signup.module.css";
+import AuthForm from "../../components/AuthForm/AuthForm";
 
 function Signup() {
   const navigate = useNavigate();
@@ -40,41 +40,38 @@ function Signup() {
   };
 
   return (
-    <div className={styles.container}>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <h2>Signup</h2>
+    <AuthForm
+      title="Signup"
+      buttonText="Signup"
+      footerText="Already have an account?"
+      footerLinkText="Login"
+      footerLink="/login"
+      onSubmit={handleSubmit}
+    >
+      <input
+        type="text"
+        name="name"
+        placeholder="Enter Name"
+        value={formData.name}
+        onChange={handleChange}
+      />
 
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter Name"
-          value={formData.name}
-          onChange={handleChange}
-        />
+      <input
+        type="email"
+        name="email"
+        placeholder="Enter Email"
+        value={formData.email}
+        onChange={handleChange}
+      />
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter Email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter Password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-
-        <button type="submit">Signup</button>
-
-        <p>
-          Already have an account? <Link to="/login">Login</Link>
-        </p>
-      </form>
-    </div>
+      <input
+        type="password"
+        name="password"
+        placeholder="Enter Password"
+        value={formData.password}
+        onChange={handleChange}
+      />
+    </AuthForm>
   );
 }
 
