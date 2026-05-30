@@ -5,21 +5,12 @@ import { useAuth } from "../../context/AuthContext";
 import styles from "./Navbar.module.css";
 import { getCartItems } from "../../services/cartService";
 import { useEffect, useState } from "react";
+import { useCart } from "../../hooks/useCart";
+import { useProducts } from "../../hooks/useProducts";
 
 function Navbar() {
   const navigate = useNavigate();
-
   const { user } = useAuth();
-
-  const [cartItems, setCartItems] = useState([]);
-  const fetchCartItems = async () => {
-    const items = await getCartItems(user?.uid);
-    setCartItems(items);
-  };
-
-  useEffect(() => {
-    if (user) fetchCartItems();
-  }, []);
 
   const handleLogout = async () => {
     try {
@@ -50,10 +41,8 @@ function Navbar() {
           </>
         ) : (
           <>
-            <Link to="/cart">Cart({cartItems?.length})</Link>
-
+            <Link to="/cart">Cart</Link>
             <Link to="/orders">Orders</Link>
-
             <button onClick={handleLogout}>Logout</button>
           </>
         )}

@@ -5,6 +5,7 @@ import { useAuth } from "../../context/AuthContext";
 import { getOrders } from "../../services/orderService";
 
 import styles from "./Orders.module.css";
+import Loader from "../../components/Loader/Loader";
 
 function Orders() {
   const { user } = useAuth();
@@ -30,7 +31,7 @@ function Orders() {
   }, []);
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <Loader />;
   }
 
   if (orders.length === 0) {

@@ -14,6 +14,7 @@ import {
 import { placeOrder } from "../../services/orderService";
 
 import styles from "./Cart.module.css";
+import Loader from "../../components/Loader/Loader";
 
 function Cart() {
   const { user } = useAuth();
@@ -89,7 +90,7 @@ function Cart() {
   );
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <Loader />;
   }
 
   if (cartItems.length === 0) {

@@ -4,12 +4,23 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import Filters from "../../components/Filters/Filters";
 import styles from "./Home.module.css";
 import { useProductFilters } from "../../hooks/useProductFilter";
+import { useProducts } from "../../hooks/useProducts";
+import { useCart } from "../../hooks/useCart";
+import Loader from "../../components/Loader/Loader";
 
 function Home() {
-  const [products, setProducts] = useState([]);
-  // const [selectedCategories, setSelectedCategories] = useState([]);
-  // const [maxPrice, setMaxPrice] = useState(100000);
-  const [loading, setLoading] = useState(true);
+  const {
+    products,
+    loading,
+    addProductToCartState,
+    updateProductQuantityState,
+  } = useProducts();
+
+  const { handleAddToCart, handleQuantity } = useCart({
+    addProductToCartState,
+    updateProductQuantityState,
+  });
+
   const {
     selectedCategories,
     setSelectedCategories,
@@ -20,35 +31,9 @@ function Home() {
     filteredProducts,
   } = useProductFilters(products);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const data = await getProducts();
-
-        setProducts(data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []);
-
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <Loader />;
   }
-
-  // const filteredProducts = products.filter((product) => {
-  //   const categoryMatch =
-  //     selectedCategories.length === 0 ||
-  //     selectedCategories.includes(product.category);
-
-  //   const priceMatch = product.price <= maxPrice;
-
-  //   return categoryMatch && priceMatch;
-  // });
 
   const categories = [...new Set(products.map((product) => product.category))];
 
@@ -74,7 +59,17 @@ function Home() {
 
         <div className={styles.productsGrid}>
           {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              onAddToCart={() => handleAddToCart(product)}
+              onIncrease={() =>
+                handleQuantity(product.id, "increase", product.quantity)
+              }
+              onDecrease={() =>
+                handleQuantity(product.id, "decrease", product.quantity)
+              }
+            />
           ))}
         </div>
       </div>

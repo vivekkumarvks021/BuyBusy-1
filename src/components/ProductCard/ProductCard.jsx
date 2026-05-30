@@ -1,39 +1,31 @@
 import styles from "./ProductCard.module.css";
-import { toast } from "react-toastify";
-import { useAuth } from "../../context/AuthContext";
-import { addToCart } from "../../services/cartService";
-import { useNavigate } from "react-router-dom";
 
-function ProductCard({ product }) {
-  const navigate = useNavigate();
-  const { user } = useAuth();
-
-  const handleAddToCart = async () => {
-    if (!user) {
-      toast.error("Please login first");
-      navigate("/login");
-      return;
-    }
-
-    try {
-      await addToCart(user.uid, product);
-
-      toast.success("Product added to cart");
-    } catch (error) {
-      toast.error(error.message);
-    }
-  };
+function ProductCard({ product, onAddToCart, onIncrease, onDecrease }) {
   return (
     <div className={styles.card}>
       <img src={product.image} alt={product.title} className={styles.image} />
 
-      <div className={styles.content}>
-        <h3>{product.title}</h3>
+      <h3 className={styles.title}>{product.title}</h3>
 
-        <p className={styles.price}>₹ {product.price}</p>
+      <p className={styles.price}>₹ {product.price}</p>
 
-        <button onClick={handleAddToCart}>Add To Cart</button>
-      </div>
+      {!product.inCart ? (
+        <button className={styles.addBtn} onClick={onAddToCart}>
+          Add To Cart
+        </button>
+      ) : (
+        <div className={styles.quantityContainer}>
+          <button className={styles.quantityBtn} onClick={onDecrease}>
+            -
+          </button>
+
+          <span className={styles.quantity}>{product.quantity}</span>
+
+          <button className={styles.quantityBtn} onClick={onIncrease}>
+            +
+          </button>
+        </div>
+      )}
     </div>
   );
 }
