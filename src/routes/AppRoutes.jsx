@@ -1,17 +1,25 @@
+// React Router components
 import { Routes, Route } from "react-router-dom";
+
+// Pages
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Signup from "../pages/Signup/Signup";
 import Cart from "../pages/Cart/Cart";
 import Orders from "../pages/Orders/Orders";
+
+// Route protection components
 import AuthGuard from "../components/AuthGuard/AuthGuard";
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 
 function AppRoutes() {
   return (
     <Routes>
+      {/* Home Page Route */}
       <Route path="/" element={<Home />} />
 
+      {/* Login Route
+          Accessible only when user is NOT authenticated */}
       <Route
         path="/login"
         element={
@@ -21,6 +29,8 @@ function AppRoutes() {
         }
       />
 
+      {/* Signup Route
+          Accessible only when user is NOT authenticated */}
       <Route
         path="/signup"
         element={
@@ -30,6 +40,8 @@ function AppRoutes() {
         }
       />
 
+      {/* Cart Route
+          Accessible only for authenticated users */}
       <Route
         path="/cart"
         element={
@@ -39,6 +51,8 @@ function AppRoutes() {
         }
       />
 
+      {/* Orders Route
+          Accessible only for authenticated users */}
       <Route
         path="/orders"
         element={

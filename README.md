@@ -1,18 +1,180 @@
-# React + Vite
+# 🛒 E-Commerce Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and responsive E-Commerce web application built using React.js, Firebase, and CSS Modules.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+# 🚀 Features
 
-## React Compiler
+## 🔐 Authentication
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- User Signup
+- User Login
+- Protected Routes
+- AuthGuard functionality
+- Firebase Authentication
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the ESLint configuration
+## 🏠 Home Page
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Product listing
+- Dynamic product cards
+- Search products
+- Filter by category
+- Filter by price
+- Multiple category selection using checkboxes
+
+---
+
+## 🛒 Cart Functionality
+
+- Add to cart
+- Increase quantity
+- Decrease quantity
+- Cart quantity sync on Home Page
+- Dynamic cart count in Navbar
+
+---
+
+## 📦 Orders Page
+
+- Place order functionality
+- Orders history page
+
+---
+
+## ⚡ Optimizations
+
+- Custom Hooks
+- Reusable Components
+- CSS Modules
+- Clean folder structure
+- Memoized cart count using `useMemo`
+
+---
+
+# 🧑‍💻 Tech Stack
+
+## Frontend
+
+- React.js
+- React Router DOM
+- CSS Modules
+
+## Backend / Database
+
+- Firebase Authentication
+- Firebase Firestore
+
+## Utilities
+
+- React Spinners
+
+---
+
+# 📁 Folder Structure
+
+```bash
+src
+│
+├── components
+│   ├── Navbar
+│   ├── ProductCard
+│   ├── Filters
+│   └── Loader
+│
+├── pages
+│   ├── Home
+│   ├── Cart
+│   ├── Login
+│   ├── Signup
+│   └── Orders
+│
+├── hooks
+│   ├── useProducts
+│   ├── useCart
+│   └── useProductFilters
+│
+├── services
+│   ├── authService
+│   ├── cartService
+│   ├── orderService
+│   └── productService
+│
+├── context
+│   └── AuthContext
+│
+├── routes
+│   └── AppRoutes
+│
+└── firebase
+```
+
+---
+
+# ⚙️ Installation
+
+## Clone Repository
+
+```bash
+git clone <your-repo-url>
+```
+
+---
+
+## Navigate to Project
+
+```bash
+cd ecommerce-website
+```
+
+---
+
+## Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+## Start Development Server
+
+```bash
+npm run dev
+```
+
+---
+
+# 🔥 Firebase Setup
+
+1. Create Firebase Project
+2. Enable Authentication
+3. Enable Firestore Database
+4. Add Firebase Config in:
+
+```bash
+src/firebase/firebaseConfig.js
+```
+
+Example:
+
+```js
+export const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID",
+};
+```
+
+---
+
+# 👨‍💻 Author
+
+Vivek Kumar
+
+Senior Frontend Developer
